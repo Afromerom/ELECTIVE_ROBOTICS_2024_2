@@ -3,7 +3,7 @@ Electiva de Robótica II<br>
 Universidad ECCI 🏫<br>
 Andrés Felipe Romero Medina 🤖 101034<br> 
 Nicolás Mejía Muñoz 🤖 107750 <br>
-Valentina Elizabeth Rubiano Avendaño 🤖 111111<br> 
+Valentina Elizabeth Rubiano Avendaño 🤖 79190<br> 
 Adriana Patricia Bolivar Bolivar 🤖 111111<br> 
 Alex Andrés Acevedo Mora 🤖 1111111<br> 
 Ingeniería Mecatrónica 👨‍🏭 <br>
