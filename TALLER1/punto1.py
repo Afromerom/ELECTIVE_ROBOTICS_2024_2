@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'entrega1.ui'
+# Form implementation generated from reading ui file 'entrega1_labels.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.10
 #
@@ -25,7 +25,7 @@ class Ui_Dialog(object):
         self.label_8 = QtWidgets.QLabel(Dialog)
         self.label_8.setGeometry(QtCore.QRect(620, 20, 181, 101))
         self.label_8.setText("")
-        self.label_8.setPixmap(QtGui.QPixmap(":/newPrefix/ecci.jpg"))
+        self.label_8.setPixmap(QtGui.QPixmap("TALLER1\IMAGENES\ecci.jpg"))
         self.label_8.setScaledContents(True)
         self.label_8.setObjectName("label_8")
         self.label_4 = QtWidgets.QLabel(Dialog)
@@ -85,12 +85,12 @@ class Ui_Dialog(object):
         self.valor1_3.setFont(font)
         self.valor1_3.setText("")
         self.valor1_3.setObjectName("valor1_3")
-        self.PICK_D = QtWidgets.QPushButton(Dialog)
-        self.PICK_D.setGeometry(QtCore.QRect(340, 130, 101, 31))
+        self.BUTTON_CONNECT = QtWidgets.QPushButton(Dialog)
+        self.BUTTON_CONNECT.setGeometry(QtCore.QRect(340, 130, 101, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
-        self.PICK_D.setFont(font)
-        self.PICK_D.setObjectName("PICK_D")
+        self.BUTTON_CONNECT.setFont(font)
+        self.BUTTON_CONNECT.setObjectName("BUTTON_CONNECT")
         self.line = QtWidgets.QFrame(Dialog)
         self.line.setGeometry(QtCore.QRect(300, 180, 22, 251))
         font = QtGui.QFont()
@@ -119,12 +119,12 @@ class Ui_Dialog(object):
         self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_4.setObjectName("line_4")
-        self.DISP = QtWidgets.QWidget(Dialog)
-        self.DISP.setGeometry(QtCore.QRect(30, 220, 261, 211))
-        self.DISP.setObjectName("DISP")
-        self.POS_X = QtWidgets.QTextEdit(Dialog)
-        self.POS_X.setGeometry(QtCore.QRect(590, 130, 111, 31))
-        self.POS_X.setObjectName("POS_X")
+        self.GRAF_ACEL = QtWidgets.QWidget(Dialog)
+        self.GRAF_ACEL.setGeometry(QtCore.QRect(30, 220, 261, 211))
+        self.GRAF_ACEL.setObjectName("GRAF_ACEL")
+        self.COMMAND = QtWidgets.QTextEdit(Dialog)
+        self.COMMAND.setGeometry(QtCore.QRect(590, 130, 111, 31))
+        self.COMMAND.setObjectName("COMMAND")
         self.label_20 = QtWidgets.QLabel(Dialog)
         self.label_20.setGeometry(QtCore.QRect(180, 90, 231, 21))
         font = QtGui.QFont()
@@ -164,9 +164,9 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.label_19.setFont(font)
         self.label_19.setObjectName("label_19")
-        self.DISP_2 = QtWidgets.QWidget(Dialog)
-        self.DISP_2.setGeometry(QtCore.QRect(320, 220, 261, 211))
-        self.DISP_2.setObjectName("DISP_2")
+        self.GRAF_GIRO = QtWidgets.QWidget(Dialog)
+        self.GRAF_GIRO.setGeometry(QtCore.QRect(320, 220, 261, 211))
+        self.GRAF_GIRO.setObjectName("GRAF_GIRO")
         self.line_5 = QtWidgets.QFrame(Dialog)
         self.line_5.setGeometry(QtCore.QRect(590, 180, 22, 251))
         font = QtGui.QFont()
@@ -194,9 +194,9 @@ class Ui_Dialog(object):
         font.setWeight(75)
         self.label_24.setFont(font)
         self.label_24.setObjectName("label_24")
-        self.DISP_3 = QtWidgets.QWidget(Dialog)
-        self.DISP_3.setGeometry(QtCore.QRect(610, 220, 261, 211))
-        self.DISP_3.setObjectName("DISP_3")
+        self.GRAF_MAG = QtWidgets.QWidget(Dialog)
+        self.GRAF_MAG.setGeometry(QtCore.QRect(610, 220, 261, 211))
+        self.GRAF_MAG.setObjectName("GRAF_MAG")
         self.line_6 = QtWidgets.QFrame(Dialog)
         self.line_6.setGeometry(QtCore.QRect(880, 180, 22, 251))
         font = QtGui.QFont()
@@ -221,13 +221,13 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Entrega1"))
         self.label_3.setText(_translate("Dialog", "Andrés Felipe Romero Medina"))
         self.label_4.setText(_translate("Dialog", "2024 - 2"))
         self.label_2.setText(_translate("Dialog", "Nicolas Mejia Muñoz"))
         self.label.setText(_translate("Dialog", "Algoritmos de Robótica  II"))
         self.label_7.setText(_translate("Dialog", "Ingeniería Mecatrónica"))
-        self.PICK_D.setText(_translate("Dialog", "CONNECT"))
+        self.BUTTON_CONNECT.setText(_translate("Dialog", "CONNECT"))
         self.label_17.setText(_translate("Dialog", "LECTURA COM: "))
         self.label_20.setText(_translate("Dialog", "Valentina Elizabeth Rubiano Avendaño"))
         self.label_21.setText(_translate("Dialog", "Adriana Patricia Bolivar Bolivar"))
@@ -236,7 +236,6 @@ class Ui_Dialog(object):
         self.label_19.setText(_translate("Dialog", "GIROSCOPIO"))
         self.label_23.setText(_translate("Dialog", "ACTIVACIÓN: "))
         self.label_24.setText(_translate("Dialog", "MAGNETOMETRO"))
-import logo1_rc
 
 
 if __name__ == "__main__":
