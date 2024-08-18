@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+import serial.tools.list_ports
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -75,12 +75,18 @@ class Ui_Dialog(object):
         self.valor1_3.setFont(font)
         self.valor1_3.setText("")
         self.valor1_3.setObjectName("valor1_3")
+        
         self.BUTTON_CONNECT = QtWidgets.QPushButton(Dialog)
         self.BUTTON_CONNECT.setGeometry(QtCore.QRect(340, 130, 101, 31))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.BUTTON_CONNECT.setFont(font)
         self.BUTTON_CONNECT.setObjectName("BUTTON_CONNECT")
+        self.BUTTON_CONNECT.setText("CONNECT")
+        self.BUTTON_CONNECT.clicked.connect(self.check_com_connection)
+        
+        
+        
         self.line = QtWidgets.QFrame(Dialog)
         self.line.setGeometry(QtCore.QRect(300, 180, 22, 251))
         font = QtGui.QFont()
@@ -209,6 +215,22 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+        
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Entrega1"))
+        self.label_3.setText(_translate("Dialog", "Andrés Felipe Romero Medina"))
+        self.BUTTON_CONNECT.setText(_translate("Dialog", "CONNECT"))
+        # (Resto del código omitido por brevedad)
+
+    def check_com_connection(self):
+        ports = list(serial.tools.list_ports.comports())
+        if ports:
+            port_name = ports[0].device  # Toma el primer puerto COM encontrado
+            self.BUTTON_CONNECT.setText(f"{port_name}")
+        else:
+            self.BUTTON_CONNECT.setText("No COM Connected")
+            
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Entrega1"))
@@ -226,7 +248,7 @@ class Ui_Dialog(object):
         self.label_19.setText(_translate("Dialog", "GIROSCOPIO"))
         self.label_23.setText(_translate("Dialog", "ACTIVACIÓN: "))
         self.label_24.setText(_translate("Dialog", "MAGNETOMETRO"))
-
+    
 
 if __name__ == "__main__":
     import sys
