@@ -458,7 +458,7 @@ class Ui_Entrega1(object):
         self.ax_mag_x.set_title("Magnetómetro X", fontsize=7)
         self.ax_mag_x.set_xlabel("Tiempo")
         self.ax_mag_x.set_ylabel("uT")
-        self.figure_mag_x.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_mag_x.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_mag_x.draw()
 
         self.ax_mag_y.clear()
@@ -466,7 +466,7 @@ class Ui_Entrega1(object):
         self.ax_mag_y.set_title("Magnetómetro Y", fontsize=7)
         self.ax_mag_y.set_xlabel("Tiempo")
         self.ax_mag_y.set_ylabel("uT")
-        self.figure_mag_y.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_mag_y.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_mag_y.draw()
 
         self.ax_mag_z.clear()
@@ -474,7 +474,7 @@ class Ui_Entrega1(object):
         self.ax_mag_z.set_title("Magnetómetro Z", fontsize=7)
         self.ax_mag_z.set_xlabel("Tiempo")
         self.ax_mag_z.set_ylabel("uT")
-        self.figure_mag_z.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_mag_z.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_mag_z.draw()
 
 
