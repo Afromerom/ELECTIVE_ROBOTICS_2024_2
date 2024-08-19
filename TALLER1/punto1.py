@@ -118,9 +118,15 @@ class Ui_Dialog(object):
         self.GRAF_ACEL = QtWidgets.QWidget(Dialog)
         self.GRAF_ACEL.setGeometry(QtCore.QRect(30, 220, 261, 211))
         self.GRAF_ACEL.setObjectName("GRAF_ACEL")
+        
+        
+        
         self.COMMAND = QtWidgets.QTextEdit(Dialog)
         self.COMMAND.setGeometry(QtCore.QRect(590, 130, 111, 31))
         self.COMMAND.setObjectName("COMMAND")
+        self.COMMAND.textChanged.connect(self.check_command_input)
+        
+        
         self.label_20 = QtWidgets.QLabel(Dialog)
         self.label_20.setGeometry(QtCore.QRect(180, 90, 231, 21))
         font = QtGui.QFont()
@@ -212,6 +218,12 @@ class Ui_Dialog(object):
         self.line_7.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_7.setObjectName("line_7")
 
+        # Atributo para almacenar la conexión serial
+        self.serial_connection = None
+        # Temporizador para leer datos de la conexión serial
+        self.timer = QtCore.QTimer()
+        self.timer.timeout.connect(self.read_serial_data)
+
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -220,17 +232,45 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Entrega1"))
         self.label_3.setText(_translate("Dialog", "Andrés Felipe Romero Medina"))
-        self.BUTTON_CONNECT.setText(_translate("Dialog", "CONNECT"))
         # (Resto del código omitido por brevedad)
-
+        
     def check_com_connection(self):
         ports = list(serial.tools.list_ports.comports())
         if ports:
             port_name = ports[0].device  # Toma el primer puerto COM encontrado
             self.BUTTON_CONNECT.setText(f"{port_name}")
+            # Abre la conexión serial
+            try:
+                self.serial_connection = serial.Serial(port_name, baudrate=9600, timeout=1)
+                self.timer.start(100)  # Lee datos cada 100 ms
+            except serial.SerialException as e:
+                print(f"Error al abrir el puerto {port_name}: {e}")
         else:
             self.BUTTON_CONNECT.setText("No COM Connected")
             
+    def check_command_input(self):
+        text = self.COMMAND.toPlainText().strip()
+        if text.lower() == 'h' and self.serial_connection and self.serial_connection.is_open:
+            self.activate_protocol()
+            self.COMMAND.clear()  # Borra el texto después de la activación
+            
+    def activate_protocol(self):
+        if self.serial_connection:
+            try:
+                self.serial_connection.write(b'H')  # Envía el carácter 'H' por el puerto COM
+                print("Protocolo de comunicación activado")
+            except serial.SerialException as e:
+                print(f"Error al enviar datos: {e}")
+                
+    def read_serial_data(self):
+        if self.serial_connection and self.serial_connection.is_open:
+            try:
+                if self.serial_connection.in_waiting > 0:
+                    data = self.serial_connection.readline().decode('utf-8').strip()
+                    print(data)  # Imprime los datos recibidos en la consola
+            except serial.SerialException as e:
+                print(f"Error al leer datos: {e}")
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Entrega1"))
