@@ -1,10 +1,22 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import serial.tools.list_ports
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+import numpy as np
+
+class MplCanvas(FigureCanvas):
+    def __init__(self, parent=None, width=5, height=4, dpi=100):
+        fig = Figure(figsize=(width, height), dpi=dpi)
+        self.axes = fig.add_subplot(111)
+        super(MplCanvas, self).__init__(fig)
+        self.setParent(parent)
+        FigureCanvas.setSizePolicy(self, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        FigureCanvas.updateGeometry(self)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(906, 460)
+        Dialog.resize(1550, 900)
         self.label_3 = QtWidgets.QLabel(Dialog)
         self.label_3.setGeometry(QtCore.QRect(180, 70, 211, 21))
         font = QtGui.QFont()
@@ -88,7 +100,7 @@ class Ui_Dialog(object):
         
         
         self.line = QtWidgets.QFrame(Dialog)
-        self.line.setGeometry(QtCore.QRect(300, 180, 22, 251))
+        self.line.setGeometry(QtCore.QRect(500, 180, 22, 690))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.line.setFont(font)
@@ -97,7 +109,7 @@ class Ui_Dialog(object):
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.line_2 = QtWidgets.QFrame(Dialog)
-        self.line_2.setGeometry(QtCore.QRect(10, 160, 881, 31))
+        self.line_2.setGeometry(QtCore.QRect(10, 160, 1500, 31))
         self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
@@ -111,7 +123,7 @@ class Ui_Dialog(object):
         self.label_17.setFont(font)
         self.label_17.setObjectName("label_17")
         self.line_4 = QtWidgets.QFrame(Dialog)
-        self.line_4.setGeometry(QtCore.QRect(10, 430, 881, 31))
+        self.line_4.setGeometry(QtCore.QRect(10, 860, 1500, 31))
         self.line_4.setFrameShape(QtWidgets.QFrame.HLine)
         self.line_4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_4.setObjectName("line_4")
@@ -149,7 +161,7 @@ class Ui_Dialog(object):
         self.label_22.setFont(font)
         self.label_22.setObjectName("label_22")
         self.label_18 = QtWidgets.QLabel(Dialog)
-        self.label_18.setGeometry(QtCore.QRect(20, 180, 251, 41))
+        self.label_18.setGeometry(QtCore.QRect(130, 180, 251, 41))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(18)
@@ -158,7 +170,7 @@ class Ui_Dialog(object):
         self.label_18.setFont(font)
         self.label_18.setObjectName("label_18")
         self.label_19 = QtWidgets.QLabel(Dialog)
-        self.label_19.setGeometry(QtCore.QRect(320, 180, 251, 41))
+        self.label_19.setGeometry(QtCore.QRect(700, 180, 251, 41))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(18)
@@ -167,10 +179,10 @@ class Ui_Dialog(object):
         self.label_19.setFont(font)
         self.label_19.setObjectName("label_19")
         self.GRAF_GIRO = QtWidgets.QWidget(Dialog)
-        self.GRAF_GIRO.setGeometry(QtCore.QRect(320, 220, 261, 211))
+        self.GRAF_GIRO.setGeometry(QtCore.QRect(320, 220, 400, 211))
         self.GRAF_GIRO.setObjectName("GRAF_GIRO")
         self.line_5 = QtWidgets.QFrame(Dialog)
-        self.line_5.setGeometry(QtCore.QRect(590, 180, 22, 251))
+        self.line_5.setGeometry(QtCore.QRect(1000, 180, 22, 690))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.line_5.setFont(font)
@@ -188,7 +200,7 @@ class Ui_Dialog(object):
         self.label_23.setFont(font)
         self.label_23.setObjectName("label_23")
         self.label_24 = QtWidgets.QLabel(Dialog)
-        self.label_24.setGeometry(QtCore.QRect(610, 180, 251, 41))
+        self.label_24.setGeometry(QtCore.QRect(1150, 180, 251, 41))
         font = QtGui.QFont()
         font.setFamily("Times New Roman")
         font.setPointSize(18)
@@ -200,7 +212,7 @@ class Ui_Dialog(object):
         self.GRAF_MAG.setGeometry(QtCore.QRect(610, 220, 261, 211))
         self.GRAF_MAG.setObjectName("GRAF_MAG")
         self.line_6 = QtWidgets.QFrame(Dialog)
-        self.line_6.setGeometry(QtCore.QRect(880, 180, 22, 251))
+        self.line_6.setGeometry(QtCore.QRect(1500, 180, 22, 690))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.line_6.setFont(font)
@@ -209,7 +221,7 @@ class Ui_Dialog(object):
         self.line_6.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_6.setObjectName("line_6")
         self.line_7 = QtWidgets.QFrame(Dialog)
-        self.line_7.setGeometry(QtCore.QRect(0, 180, 22, 251))
+        self.line_7.setGeometry(QtCore.QRect(0, 180, 22, 690))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.line_7.setFont(font)
@@ -223,7 +235,15 @@ class Ui_Dialog(object):
         # Temporizador para leer datos de la conexión serial
         self.timer = QtCore.QTimer()
         self.timer.timeout.connect(self.read_serial_data)
+        
+        # Widget para las gráficas
+        self.GRAF_ACEL = QtWidgets.QWidget(Dialog)
+        self.GRAF_ACEL.setGeometry(QtCore.QRect(30, 220, 470, 400))
+        self.GRAF_ACEL.setObjectName("GRAF_ACEL")
 
+        # Creación del canvas de matplotlib dentro de GRAF_ACEL
+        self.sc = MplCanvas(self.GRAF_ACEL, width=5, height=4, dpi=100)
+        
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -254,6 +274,27 @@ class Ui_Dialog(object):
             self.activate_protocol()
             self.COMMAND.clear()  # Borra el texto después de la activación
             
+    def plot_acceleration(self, t, accelX, accelY, accelZ):
+        self.sc.axes.clear()  # Limpiar el gráfico
+        self.sc.axes.plot(t, accelX, 'b', label='ax')
+        self.sc.axes.plot(t, accelY, 'r', label='ay')
+        self.sc.axes.plot(t, accelZ, 'g', label='az')
+        self.sc.axes.set_title('Acelerômetros da MPU6050 sem calibração')
+        self.sc.axes.set_xlabel('Tempo (segundos)')
+        self.sc.axes.set_ylabel('aceleração (g)')
+        self.sc.axes.legend(loc='upper right')
+        self.sc.draw()  # Redibujar la gráfica
+
+    def activate_protocol(self):
+        # Simulación de datos para `accelX`, `accelY`, `accelZ` y `t`
+        t = np.linspace(0, 10, 100)  # Simulando 100 puntos en 10 segundos
+        accelX = np.sin(t)
+        accelY = np.cos(t)
+        accelZ = np.sin(t + np.pi / 4)
+
+        # Llamar a la función de graficado
+        self.plot_acceleration(t, accelX, accelY, accelZ)
+        
     def activate_protocol(self):
         if self.serial_connection:
             try:
