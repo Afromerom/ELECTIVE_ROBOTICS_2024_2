@@ -408,7 +408,7 @@ class Ui_Entrega1(object):
         self.ax_acel_x.set_title("Acelerómetro X", fontsize=7)
         self.ax_acel_x.set_xlabel("Tiempo")
         self.ax_acel_x.set_ylabel("G's")
-        self.figure_acel_x.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_acel_x.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_acel_x.draw()
 
         self.ax_acel_y.clear()
@@ -416,7 +416,7 @@ class Ui_Entrega1(object):
         self.ax_acel_y.set_title("Acelerómetro Y", fontsize=7)
         self.ax_acel_y.set_xlabel("Tiempo")
         self.ax_acel_y.set_ylabel("G's")
-        self.figure_acel_y.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_acel_y.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_acel_y.draw()
 
         self.ax_acel_z.clear()
@@ -424,7 +424,7 @@ class Ui_Entrega1(object):
         self.ax_acel_z.set_title("Acelerómetro Z", fontsize=7)
         self.ax_acel_z.set_xlabel("Tiempo")
         self.ax_acel_z.set_ylabel("G's")
-        self.figure_acel_z.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_acel_z.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_acel_z.draw()
 
         # Actualiza las gráficas del Giroscopio
@@ -433,7 +433,7 @@ class Ui_Entrega1(object):
         self.ax_gyro_x.set_title("Giroscopio X", fontsize=7)
         self.ax_gyro_x.set_xlabel("Tiempo")
         self.ax_gyro_x.set_ylabel("°/s")
-        self.figure_gyro_x.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_gyro_x.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_gyro_x.draw()
 
         self.ax_gyro_y.clear()
@@ -441,7 +441,7 @@ class Ui_Entrega1(object):
         self.ax_gyro_y.set_title("Giroscopio Y", fontsize=7)
         self.ax_gyro_y.set_xlabel("Tiempo")
         self.ax_gyro_y.set_ylabel("°/s")
-        self.figure_gyro_y.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_gyro_y.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_gyro_y.draw()
 
         self.ax_gyro_z.clear()
@@ -449,7 +449,7 @@ class Ui_Entrega1(object):
         self.ax_gyro_z.set_title("Giroscopio Z", fontsize=7)
         self.ax_gyro_z.set_xlabel("Tiempo")
         self.ax_gyro_z.set_ylabel("°/s")
-        self.figure_gyro_z.subplots_adjust(left=0.3, right=0.95, top=0.85, bottom=0.3)
+        self.figure_gyro_z.subplots_adjust(left=0.4, right=0.95, top=0.85, bottom=0.3)
         self.canvas_gyro_z.draw()
 
         # Actualiza las gráficas del Magnetómetro
