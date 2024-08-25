@@ -12,20 +12,18 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         super().__init__()
         self.setupUi(self)
         
-        # Serial connection
-        self.serial_connection = None
-        self.running = False
-        self.acel_x_dato = []
-        self.acel_y_dato = []
-        self.acel_z_dato = []
+        # Variables para almacenar datos durante el temporizador
+        self.timer_acel_x = []
+        self.timer_acel_y = []
+        self.timer_acel_z = []
 
-        self.giros_x_dato = []
-        self.giros_y_dato = []
-        self.giros_z_dato = []
+        self.timer_giros_x = []
+        self.timer_giros_y = []
+        self.timer_giros_z = []
 
-        self.mag_x_dato = []
-        self.mag_y_dato = []
-        self.mag_z_dato = []
+        self.timer_mag_x = []
+        self.timer_mag_y = []
+        self.timer_mag_z = []
 
         self.indices = []
         self.index = 0
@@ -35,7 +33,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         
         # Inicializar temporizador
         self.timer_count = 30
-        self.qtimer = QtCore.QTimer(self)  # Cambié el nombre a qtimer para evitar conflictos
+        self.qtimer = QtCore.QTimer(self)  
 
         
         # Botones
@@ -44,7 +42,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.REED.clicked.connect(lambda: self.mostrar_graficas("acelerometro"))
         self.REED_2.clicked.connect(lambda: self.mostrar_graficas("giroscopio"))
         self.REED_3.clicked.connect(lambda: self.mostrar_graficas("magnetometro"))
-        self.pushButton_3.clicked.connect(self.start_timer)  # Conectar pushButton_3 al temporizador
+        self.pushButton_3.clicked.connect(lambda: print("Button clicked!"))
 
 
         
@@ -182,7 +180,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.graphicsView_4.setGeometry(QtCore.QRect(630, 490, 431, 311))
         self.graphicsView_4.setObjectName("graphicsView_4")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
-        self.label_5.setGeometry(QtCore.QRect(20, 310, 71, 16))
+        self.label_5.setGeometry(QtCore.QRect(70, 310, 71, 16))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_5.setFont(font)
@@ -200,14 +198,14 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
-        self.label_7.setGeometry(QtCore.QRect(20, 530, 71, 16))
+        self.label_7.setGeometry(QtCore.QRect(30, 530, 61, 16))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_7.setFont(font)
         self.label_7.setObjectName("label_7")
         
         self.label_9 = QtWidgets.QLabel(self.centralwidget)
-        self.label_9.setGeometry(QtCore.QRect(150, 530, 31, 16))
+        self.label_9.setGeometry(QtCore.QRect(115, 530, 31, 16))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_9.setFont(font)
@@ -218,7 +216,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
 
         # Objeto STATE
         self.STATE = QtWidgets.QLabel(self.centralwidget)
-        self.STATE.setGeometry(QtCore.QRect(20, 560, 131, 16))
+        self.STATE.setGeometry(QtCore.QRect(40, 550, 71, 16))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.STATE.setFont(font)
@@ -240,7 +238,8 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
+        self.pushButton_3.clicked.connect(self.start_timer)
+        self.time_remaining = 30
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -273,10 +272,27 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.pushButton_3.setText(_translate("MainWindow", "START"))
 
     def start_timer(self):
-        # Configurar el temporizador
+        print("Timer started")
         self.STATE.setText("LOADING")
-        self.STATE.setStyleSheet("color: green;")
+        self.STATE.setStyleSheet("color: orange;")
         self.timer_count = 30
+
+        # Limpiar listas de datos previos
+        self.timer_acel_x.clear()
+        self.timer_acel_y.clear()
+        self.timer_acel_z.clear()
+        self.timer_giros_x.clear()
+        self.timer_giros_y.clear()
+        self.timer_giros_z.clear()
+        self.timer_mag_x.clear()
+        self.timer_mag_y.clear()
+        self.timer_mag_z.clear()
+        self.indices.clear()
+
+        # Iniciar la adquisición de datos
+        self.running = True
+        self.start_thread()
+
         self.qtimer.timeout.connect(self.update_timer)
         self.qtimer.start(1000)  # Actualizar cada 1 segundo
 
@@ -286,10 +302,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
             self.timer_count -= 1
         else:
             self.qtimer.stop()
-            self.STATE.setText("FINISH")
-            self.STATE.setStyleSheet("color: blue;")
+            self.STATE.setText("DONE")
+            self.STATE.setStyleSheet("color: green;")
             self.timer_label.setText("0")
-
+            self.running = False  # Detener la adquisición de datos
+            print("Timer finished")
 
     def inicio_adquisicion(self):
         port = self.comboBox.currentText()
@@ -374,7 +391,9 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.graphicsView_2.plot(indices, y_dato, pen='g')  # Gráfica en graphicsView_2 (Y)
         self.graphicsView.plot(indices, z_dato, pen='b')    # Gráfica en graphicsView (Z)
         self.graphicsView_4.plot(indices, z_dato, pen='b')  # Gráfica en graphicsView_4 (Z)
-
+    
+    def simple_test(self):
+        print("Button connection works!")
 
 
 
