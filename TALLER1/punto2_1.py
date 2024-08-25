@@ -33,12 +33,10 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         # Conectar la señal para actualizar las gráficas
         self.update_plot_signal.connect(self.actualizar_plots)
         
-
         # Inicializar temporizador
         self.timer_count = 30
         self.qtimer = QtCore.QTimer(self)  # Cambié el nombre a qtimer para evitar conflictos
-        
-        
+
         
         # Botones
         self.pushButton.clicked.connect(self.inicio_adquisicion)
