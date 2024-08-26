@@ -48,11 +48,11 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1079, 835)
+        MainWindow.resize(1079, 710)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
-        self.graphicsView.setGeometry(QtCore.QRect(190, 490, 421, 311))
+        self.graphicsView.setGeometry(QtCore.QRect(190, 440, 421, 251))
         self.graphicsView.setObjectName("graphicsView")
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(80, 190, 91, 20))
@@ -69,16 +69,16 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label.setObjectName("label")
         
         self.graphicsView = pg.PlotWidget(self.centralwidget)
-        self.graphicsView.setGeometry(QtCore.QRect(190, 490, 421, 311))
+        self.graphicsView.setGeometry(QtCore.QRect(190, 440, 421, 251))
         self.graphicsView.setObjectName("graphicsView")
         
         self.graphicsView_2 = pg.PlotWidget(self.centralwidget)
-        self.graphicsView_2.setGeometry(QtCore.QRect(630, 160, 431, 301))
+        self.graphicsView_2.setGeometry(QtCore.QRect(630, 160, 431, 251))
         self.graphicsView_2.setObjectName("graphicsView_2")
         
         
         self.graphicsView_3 = pg.PlotWidget(self.centralwidget)
-        self.graphicsView_3.setGeometry(QtCore.QRect(190, 160, 421, 301))
+        self.graphicsView_3.setGeometry(QtCore.QRect(190, 160, 421, 251))
         self.graphicsView_3.setObjectName("graphicsView_3")
         
         
@@ -95,7 +95,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_3.setFont(font)
         self.label_3.setObjectName("label_3")
         self.label_4 = QtWidgets.QLabel(self.centralwidget)
-        self.label_4.setGeometry(QtCore.QRect(190, 470, 201, 16))
+        self.label_4.setGeometry(QtCore.QRect(190, 420, 201, 16))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_4.setFont(font)
@@ -177,7 +177,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.label_16.setFont(font)
         self.label_16.setObjectName("label_16")
         self.graphicsView_4 = pg.PlotWidget(self.centralwidget)
-        self.graphicsView_4.setGeometry(QtCore.QRect(630, 490, 431, 311))
+        self.graphicsView_4.setGeometry(QtCore.QRect(630, 440, 431, 251))
         self.graphicsView_4.setObjectName("graphicsView_4")
         self.label_5 = QtWidgets.QLabel(self.centralwidget)
         self.label_5.setGeometry(QtCore.QRect(70, 310, 71, 16))
@@ -192,7 +192,7 @@ class Ui_MainWindow(QtWidgets.QMainWindow):
         self.REED_3.setGeometry(QtCore.QRect(30, 400, 131, 21))
         self.REED_3.setObjectName("REED_3")
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
-        self.label_6.setGeometry(QtCore.QRect(630, 470, 201, 16))
+        self.label_6.setGeometry(QtCore.QRect(630, 420, 201, 16))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.label_6.setFont(font)
