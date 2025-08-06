@@ -1,29 +1,32 @@
-// Función para consultar estado del pedido
-function checkOrder() {
-    const orderId = document.getElementById("orderId").value;
+function getCaseStatus() {
+    const caseNumber = document.getElementById("caseNumber").value;
+    const serial = document.getElementById("serialOrAccount").value;
 
-    fetch("/check-order", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ order_id: orderId })
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("orderResult").textContent = data.message;
-    });
+    if (caseNumber === "225964" && serial === "CBH123456") {
+        document.getElementById("caseResult").textContent = "Case 225964 is currently Open and pending review.";
+    } else {
+        document.getElementById("caseResult").textContent = "Case not found or invalid details.";
+    }
 }
 
-// Función para predecir la mejor acción
-function predictAction() {
-    const issueType = document.getElementById("issueType").value;
+function sendEmailUpdates() {
+    document.getElementById("emailResult").textContent = "Updates have been sent to your registered email address.";
+}
 
-    fetch("/predict-next-action", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ issue_type: issueType })
-    })
-    .then(res => res.json())
-    .then(data => {
-        document.getElementById("actionResult").textContent = data.next_best_action;
-    });
+function getTrackingNumber() {
+    const caseNumber = document.getElementById("trackCaseNumber").value;
+    const systemNumber = document.getElementById("systemNumber").value;
+
+    if (caseNumber && systemNumber) {
+        const trackingNum = "882677670333";
+        document.getElementById("trackingResult").innerHTML =
+            `Tracking Number: ${trackingNum} <br> 
+             <a href="https://www.fedex.com/fedextrack/?tracknumbers=${trackingNum}" target="_blank">Check delivery status on FedEx</a>`;
+    } else {
+        document.getElementById("trackingResult").textContent = "Please enter both Case and System numbers.";
+    }
+}
+
+function openChat() {
+    window.location.href = "/chat";  // Ruta que lleva al chatbot
 }
